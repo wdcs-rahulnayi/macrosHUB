@@ -1,5 +1,6 @@
 import { useEffect } from "react"
 import { Chart } from "chart.js";
+import Header from "./Header";
 function Dashboard() {
     useEffect(() => {
         var ctx = document.getElementById('myChart').getContext('2d');
@@ -42,7 +43,9 @@ function Dashboard() {
     return (
         <>
             {/* Doughnut chart */}
+            <Header />
             <div className="max-w-7xl min-h-screen mx-auto my-auto mt-8">
+            
             <h1 className="mx-auto mt-10 text-xl font-semibold capitalize ">Your Daily Macros</h1>
             <div className="w-[1100px] h-screen flex mx-auto my-auto">
                 <div className='border border-gray-400 pt-0 rounded-xl w-full h-fit my-auto  shadow-xl pb-2'>

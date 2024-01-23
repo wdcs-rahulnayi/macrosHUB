@@ -18,7 +18,7 @@ const Home = () => {
 
   // Effect to update activeTab based on the route
   useEffect(() => {
-    const currentTab = router.pathname.replace("/", "") || "dashboard";
+    const currentTab = "dashboard";
     setActiveTab(currentTab);
   }, [router.pathname]);
 

@@ -1,5 +1,16 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 const Header = () => {
+    const router = useRouter();
+    const logoutHandler = () => {
+        fetch("http://localhost:5000/api/v1/auth/logout")
+          .then((response) => response.json())
+          .then((result) => {
+            alert(result.msg);
+            router.push('/');
+          })
+          .catch((error) => console.log('error', error));
+      };
     return (
       <header className="text-gray-600 body-font fixed top-0 left-0 right-0 bg-white z-50">
         <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
@@ -24,7 +35,7 @@ const Header = () => {
               Workout
             </Link>
           </nav>
-          <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0">Log out
+          <button class="inline-flex items-center bg-gray-100 border-0 py-1 px-3 focus:outline-none hover:bg-gray-200 rounded text-base mt-4 md:mt-0" onClick={logoutHandler}>Log out
         </button>
         </div>
       </header>
