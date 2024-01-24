@@ -42,7 +42,7 @@ const Home = () => {
 
     <>
     <div className="max-w-7xl min-h-screen mx-auto my-auto mt-8">
-      {/* <Header /> */}
+
 
       <div className="content-container mt-20">{renderComponent()}</div>
       </div>
@@ -50,4 +50,4 @@ const Home = () => {
   );
 };
 
-export default PrivateRoute(Home);
+export default Home;

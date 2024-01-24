@@ -1,5 +1,4 @@
 import BMI from "@/components/BMI"
-import PrivateRoute from "@/Private/PrivateRoute"
 const BMIPage = () => {
     return (
         <>
@@ -8,4 +7,4 @@ const BMIPage = () => {
         </>
     )
 }
-export default PrivateRoute(BMIPage);
+export default BMIPage;
