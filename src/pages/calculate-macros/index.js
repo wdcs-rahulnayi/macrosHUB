@@ -1,4 +1,5 @@
 import CalculateMacros from "@/components/CalculateMacros"
+import PrivateRoute from "@/Private/PrivateRoute"
 const CalculateMacrosPage = () => {
     return (
         <>
@@ -6,4 +7,4 @@ const CalculateMacrosPage = () => {
         </>
     )
 }
-export default CalculateMacrosPage
+export default PrivateRoute(CalculateMacrosPage);

@@ -1,5 +1,21 @@
-import "@/styles/globals.css";
+
+import { useRouter } from 'next/router';
+import { UserProvider } from '@/context/UserContext';
+import '@/styles/globals.css';
+import Header from '@/components/Header';
 
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const router = useRouter();
+
+  const isAuthPage = router.pathname === '/signup' || router.pathname === '/login' || router.pathname === '/';
+  
+  return (
+    <>
+      <UserProvider>
+      {!isAuthPage && <Header />}
+
+        <Component {...pageProps} />
+      </UserProvider>
+    </>
+  );
 }

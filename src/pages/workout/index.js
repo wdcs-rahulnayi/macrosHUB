@@ -1,4 +1,5 @@
-import Workout from "@/components/Workout"
+import Workout from "@/components/Workout";
+import PrivateRoute from "@/Private/PrivateRoute";
 const WorkoutPage = () => {
     return (
         <>
@@ -6,4 +7,4 @@ const WorkoutPage = () => {
         </>
     )
 }
-export default WorkoutPage
+export default PrivateRoute(WorkoutPage);

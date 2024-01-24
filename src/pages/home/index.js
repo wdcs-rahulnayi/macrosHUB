@@ -5,8 +5,7 @@ import Dashboard from "@/components/Dashboard";
 import CalculateMacros from "@/components/CalculateMacros";
 import BMI from "@/components/BMI";
 import Workout from "@/components/Workout";
-import Header from "@/components/Header";
-
+import PrivateRoute from "@/Private/PrivateRoute";
 const Home = () => {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState("dashboard"); // Default active tab
@@ -43,7 +42,7 @@ const Home = () => {
 
     <>
     <div className="max-w-7xl min-h-screen mx-auto my-auto mt-8">
-      <Header />
+      {/* <Header /> */}
 
       <div className="content-container mt-20">{renderComponent()}</div>
       </div>
@@ -51,4 +50,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default PrivateRoute(Home);
