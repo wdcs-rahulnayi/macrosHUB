@@ -27,7 +27,7 @@ function Dashboard() {
         }]
       },
       options: {
-        cutout: '80%', // Adjust the cutout percentage for better presentation
+        cutout: '80%',
       },
     });
   }, [])

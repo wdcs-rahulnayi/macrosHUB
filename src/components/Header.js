@@ -4,11 +4,11 @@ import { useUser } from "@/context/UserContext";
 
 const Header = () => {
   const router = useRouter();
-  const { user, logoutUser } = useUser(); // Access the user object from the context
+  const { user, logoutUser } = useUser();
 
   const logoutHandler = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/v1/auth/logout");
+      const response = await fetch(process.env.NEXT_PUBLIC_API_USER_LOGOUT);
       const result = await response.json();
       
       alert(result.msg);

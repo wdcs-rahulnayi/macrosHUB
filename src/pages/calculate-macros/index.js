@@ -1,49 +1,56 @@
-import AddMeal from "@/components/AddMeal"
-import ListMacros from "@/components/ListMacros"
-import { useState, useEffect } from "react";
+import AddMeal from "@/components/AddMeal";
+import ListMacros from "@/components/ListMacros";
+import { useState, useEffect, useCallback } from "react";
+
 const CalculateMacrosPage = () => {
-    const [macrosData, setMacrosData] = useState(null);
-    // const [reFetch, setreFetch] = useState(false) 
+  const [macrosData, setMacrosData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+    debugger
+  const fetchData = useCallback(async () => {
+    try {
+      setLoading(true);
+      const response = await fetch(process.env.NEXT_PUBLIC_API_MACROS, {
+        credentials: 'include',
+      });
 
-    function onMacrosAdded(){
-        fetchData();
+      if (response.ok) {
+        const data = await response.json();
+        setMacrosData(data);
+        setError(null);
+      } else {
+        setError(`Failed to fetch data: ${response.statusText}`);
+      }
+    } catch (error) {
+      setError(`Request error: ${error.message}`);
+    } finally {
+      setLoading(false);
     }
-    function onMacrosDeleted(){
-        fetchData();
-    }
-    const fetchData = async () => {
-        try {
-            debugger
-            const response = await fetch("http://localhost:5000/api/v1/macros", {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-            });
+  }, []);
 
-            if (response.ok) {
-                const data = await response.json();
-                console.log('Data fetched successfully:', data);
-                setMacrosData(data);
-            } else {
-                console.log('Failed to fetch data:', response.statusText);
-            }
-        } catch (error) {
-            console.error("Request error:", error.message);
-        }
-    };
-    useEffect(() => {
-        fetchData(); 
-    }, []);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-    return (
-        <>
-         <div className="flex flex-col gap-4 max-w-7xl min-h-screen mx-auto my-auto mt-28">
-                <AddMeal onMacrosAdd={onMacrosAdded}/>
-                <ListMacros macrosData={macrosData} onMacrosDelete={onMacrosDeleted}/>
-            </div>
-        </>
-    )
-}
+  const handleMacrosChange = useCallback(() => {
+    fetchData();
+  }, [fetchData]);
+
+  return (
+    <>
+      <div className="flex flex-row gap-4 max-w-8xl min-h-screen mx-auto mt-28 px-16">
+        <AddMeal onMacrosAdd={handleMacrosChange} />
+        <ListMacros
+          macrosData={macrosData}
+          onMacrosDelete={handleMacrosChange}   
+          onMacrosUpdate={handleMacrosChange}
+        />
+      </div>
+      {loading && <p>Loading...</p>}
+      {error && <p>Error: {error}</p>}
+      
+    </>
+  );
+};
+
 export default CalculateMacrosPage;

@@ -8,20 +8,18 @@ import Workout from "@/components/Workout";
 import PrivateRoute from "@/Private/PrivateRoute";
 const Home = () => {
   const router = useRouter();
-  const [activeTab, setActiveTab] = useState("dashboard"); // Default active tab
+  const [activeTab, setActiveTab] = useState("dashboard"); 
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
-    router.push(`/${tab}`); // Update the URL based on the selected tab
+    router.push(`/${tab}`); 
   };
 
-  // Effect to update activeTab based on the route
   useEffect(() => {
     const currentTab = "dashboard";
     setActiveTab(currentTab);
   }, [router.pathname]);
 
-  // Render the component based on the active tab
   const renderComponent = () => {
     switch (activeTab) {
       case "dashboard":

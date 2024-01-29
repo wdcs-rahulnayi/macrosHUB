@@ -39,7 +39,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/auth/register", {
+      const response = await fetch(process.env.NEXT_PUBLIC_API_USER_REGISTER, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
