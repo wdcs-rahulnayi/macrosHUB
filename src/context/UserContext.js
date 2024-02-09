@@ -16,6 +16,7 @@ export const UserProvider = ({ children }) => {
     setUser(null);
     if(typeof window !== undefined) {
       localStorage.removeItem('user');
+      // testing 
     }
   };  
 
